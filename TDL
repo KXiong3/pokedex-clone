@@ -1,0 +1,39 @@
+1. create a class which will represent the flower. it must have the following
+    a. an array of images paths
+    b. an index into that array
+    c. a DOM reference to an <img> element
+
+2. create a click event handler as a method on your class. add it as an event listener on the image element
+    a. every time the image is clicked, the event handler should increase the index of the array and assign a new src path to the image to make the flower grow
+        - REMINDER: make sure the index doesn't go beyond the number of images
+    - REMINDER: to call a class instance method from a click event, you must bind the method in order to retain the correct 'this'
+
+3. create at least two instances of the flower and render them to the Page
+
+4. similar to the flower, now create some more objects which respond to mouse clicks but with pokemon
+    a. every pokemon should start as a pokeball
+        - images/pokeball.png
+    b. every time you click on a pokemon, there should be a random chance that it will evolve
+    c. every time you click on a pokemon, as long as it is not in its final form, it should shake (using CSS animations)
+        - there is already a helper function and CSS animation built in. pass the DOM element for the image into 'toggleShake(element)' and it will apply the animation
+    d. charmander
+        - has three forms: charmander (charmander0.png), charmeleon (charmander1.png), and charizard (charmander2.png)
+        - the evolve stage should look like: pokeball -> charmander -> charmeleon -> charizard
+        - create two instances of charmander or another pokemon and render them to the page
+    f. eevee
+        - will randomly evolve into one other form
+        - the evolve stage should look like: pokeball -> eevee -> any one of the 8 forms
+        - create two instances of eevee and render them to the page
+
+5. do not create any functions that are not class methods
+
+
+optional practice
+
+1. use inheritance
+    a. think about how to reduce duplicate code as much as possible and what makes the most intuitive sense
+
+2. layout
+    a. add a background image or make things more interesting
+
+    

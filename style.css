@@ -1,5 +1,9 @@
 /* Write your CSS Here. */
- 
+img {
+  width: 200px;
+  height: 200px;
+  background-size: contain;
+}
 
 
 /* ----- Shake Animation --------------------------------- */
