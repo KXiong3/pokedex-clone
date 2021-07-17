@@ -1,10 +1,518 @@
 /* Write your CSS Here. */
+/* * {
+  box-sizing: border-box;
+} */
+
+body {
+  /* background-color: black; */
+}
+
 img {
   width: 200px;
   height: 200px;
   background-size: contain;
 }
 
+#left {
+
+}
+
+#middle {
+
+}
+
+#right {
+
+}
+
+/*-----------------------------Pokedex CSS-------------------------------------- */
+
+h1 {
+  color: green;
+  text-align: center;
+}
+
+.pokedex {
+  /* margin: 0 auto;
+  width: 50%; */
+  display: flex;
+  justify-content: center;
+}
+
+/* left panel */
+.left-panel {
+  background-color: #b30000;
+  width: 545px;
+  height: 575px;
+  box-shadow: 1px 1px 1px 1px black;
+  display: flex;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  height: 555px;
+  width: 475px;
+  justify-content: space-between;
+  border: 1px solid black;
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+/* start of top left panel */
+.left-top {
+  display: flex;
+  justify-content: flex-start;
+  height: 125px;
+  /* border: 1px solid black; */
+}
+
+.large-blue-light {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: skyblue;
+  border: 6px solid white;
+  box-shadow: 1px 1px 1px 1px black;
+  margin-top: 6px;
+  margin-left: 6px;
+}
+
+.left-top .medium-red-light {
+
+}
+
+.medium-red-light {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #ff3333;
+  box-shadow: 2px 2px black;
+  margin-top: 6px;
+  margin-left: 6px;
+}
+
+.medium-yellow-light {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #e6e600;
+  box-shadow: 2px 2px black;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.left-top .medium-green-light {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #29a329;
+  box-shadow: 2px 2px black;
+  margin-top: 6px;
+  margin-left: 4px;
+
+}
+
+.medium-green-light {
+
+}
+/* end of top left panel */
+
+/* start of screen */
+.left-screen {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black; */
+}
+
+.screen-border {
+  border-top: 28px solid grey;
+  border-left: 15px solid grey;
+  border-right: 15px solid grey;
+  /* border-bottom: 50px solid grey; */
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  border-end-start-radius: 65px;
+  border-end-end-radius: 14px;
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.screen-top {
+  display: flex;
+  justify-content: center;
+}
+
+.screen-top .small-red-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ff3333;
+  margin: -16px 6px;
+  box-shadow: 2px 2px black;
+}
+
+.small-red-light {
+  
+}
+
+.image-screen {
+  width: 425px;
+  height: 200px;
+  background-color: white;
+}
+
+.image {
+  
+}
+
+.screen-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: grey;
+  border-end-start-radius: 45px;
+}
+
+.medium-red-button {
+  /* border-radius: 50%;
+  background-color: red;
+  font-size: 16.5px;
+  margin-top: 8px;
+  margin-left: 25px; */
+}
+
+.sound-button {
+  border-radius: 50%;
+  background-color: red;
+  font-size: 16.5px;
+  margin-left: 36px;
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.speakers {
+
+}
+
+.speakers div {
+  width: 145px;
+  height: 8px;
+  background-color: black;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  box-shadow: 1px 1px #a6a6a6;
+}
+
+.speakers div:nth-child(1) {
+  margin-top: 8px;
+}
+/* end of screen */
+
+/* start of left buttons */
+.left-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  /* margin-top: -14px; */
+  /* border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black; */
+}
+
+.evolve-button {
+  border-radius: 50%;
+  background-color: blue;
+  font-size: larger;
+  color: white;
+  box-shadow: 1px 1px 1px 1px black;
+  margin-left: 38px;
+  /* margin-top: 16px; */
+}
+
+.modes-and-display {
+  /* margin-top: 16px; */
+}
+
+.modes-and-dislpay .darkmode-button {
+  
+}
+
+.modes-and-dislpay .lightmode-button {
+
+}
+
+.darkmode-button {
+  background-color: #1a3365;
+  color: white;
+  border-radius: 10px;
+  font-size: x-small;
+  /* border: 1px black solid; */
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.lightmode-button {
+  background-color: #F0EEEE;
+  border-radius: 10px;
+  font-size: x-small;
+  /* border: 1px black solid; */
+  box-shadow: 1px 1px 1px 1px black;
+  
+}
+
+.species-display {
+  background-color: white;
+  margin-top: 28px;
+  width: 145px;
+  height: 65px;
+  /* box-shadow: 1px 1px 1px 1px black; */
+  border: 2.6px outset black;
+}
+
+
+.direction-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 28px;
+}
+
+.direction-up {
+  box-shadow: 2px 2px 2px 2px black;
+}
+
+.up {
+  border-left: 15px solid  transparent;
+  border-right: 15px solid  transparent;
+  border-bottom: 20px solid darkgrey;
+}
+
+.left-right-center {
+  display: flex;
+  align-items: center;
+}
+
+.direction-left {
+  box-shadow: 2px 2px 2px 2px black;
+}
+
+.left {
+  /* 10,10,15 */
+  border-top: 15px solid  transparent;
+  border-bottom: 15px solid  transparent;
+  border-right: 20px solid darkgrey;
+}
+
+.center-piece {
+  display: flex;
+  width: 35px;
+  height: 38px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.center-circle {
+  border-radius: 50%;
+  border: 10px ridge darkgrey;
+}
+
+.direction-right {
+  box-shadow: 2px 2px 2px 2px black;
+}
+
+.right {
+  border-top: 15px solid  transparent;
+  border-bottom: 15px solid  transparent;
+  border-left: 20px solid darkgrey;
+}
+
+.direction-down {
+  box-shadow: 2px 2px 2px 2px black;
+}
+
+.down {
+  border-left: 15px solid  transparent;
+  border-right: 15px solid  transparent;
+  border-top: 20px solid darkgrey;
+}
+
+/* end of left buttons */
+/* end of left panel */
+
+/* start of center */
+.center-container {
+  display: flex;
+  align-items: center;
+  width: 42px;
+  height: 575px;
+  background-color: #b30000;
+  box-shadow: 1px 1px 1px 1px black;
+  border-radius: 12px;
+}
+
+.center-block {
+  height: 80%;
+  width: 100%;
+  border: 2px solid black;
+  border-top: 15px double black;
+  border-bottom: 15px double black;
+  border-radius: 4px;
+
+}
+/* end of center */
+
+/* start of right panel */
+.right-panel {
+  background-color: #b30000;
+  width: 500px;
+  height: 575px;
+  box-shadow: 2px 2px 2px 2px black;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: inherit;
+}
+
+.info-screen {
+  width: 350px;
+  height: 125px;
+  background-color: white;
+  margin-top: 175px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.blue-button-container {
+  display: inline;
+  width: 250px;
+  /* margin-top: -25px; */
+  margin-left: auto;
+  margin-right: auto;
+}
+.blue-button-collection {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.blue-button {
+  background-color: blue;
+  color: white;
+  width: 50px;
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.lights-and-modes {
+  display: flex;
+  justify-content: space-around;
+}
+
+.lights {
+  display: flex;
+}
+
+.lights .small-red-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ff3333;
+  box-shadow: 2px 2px black;
+  margin-right: 8px;
+}
+
+.small-green-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #29a329;
+  box-shadow: 2px 2px black;
+}
+
+.modes {
+
+}
+
+.modes .darkmode-button {
+
+}
+
+.modes .lightmode-button {
+
+}
+
+
+.nav-and-search {
+  display: flex;
+  justify-content: space-around;
+}
+
+.two-way-direction {
+  display: flex;
+}
+
+.left-button {
+  box-shadow: 1px 1px 1px 1px black;
+
+}
+
+.right-button {
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.search {
+  display: flex
+}
+
+label, input {
+  display: block;
+}
+
+#search-box {
+
+}
+
+label {
+  margin-left: -75px;
+  margin-bottom: 8px;
+}
+
+.search-button {
+  box-shadow: 1px 1px 1px 1px black;
+  margin-left: 4px;
+  border-radius: 50%;
+}
+
+
+.type-display {
+  display: flex;
+  justify-content: space-around;
+}
+
+.type1 {
+  width: 125px;
+  height: 45px;
+  background-color: white;
+  border: 2.6px outset black;
+}
+
+.type2 {
+  width: 125px;
+  height: 45px;
+  background-color: white;
+  margin-bottom: 20px;
+  border: 2.6px outset black;
+}
+/* end of right panel */
+
+/* ----------------------------End of Pokedex-------------------------------- */
 
 /* ----- Shake Animation --------------------------------- */
 .shake2 {

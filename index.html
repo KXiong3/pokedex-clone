@@ -1,26 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <meta name="description" content="Kenzie" />
-    <meta name="author" content="Kenzie" />
-    <meta name="keywords" content="Kenzie" />
+<head>
+  <!-- Required meta tags-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Title Page-->
-    <title>Kenzie JavaScript Page</title>
+  <meta name="description" content="Kenzie" />
+  <meta name="author" content="Kenzie" />
+  <meta name="keywords" content="Kenzie" />
 
-    <!-- CSS-->
-    <link href="style.css" rel="stylesheet" media="all" />
-  </head>
+  <!-- Title Page-->
+  <title>Kenzie JavaScript Page</title>
 
-  <body>
-    <main></main>
-    <script src="code.js"></script>
-  </body>
+  <!-- CSS-->
+  <link href="style.css" rel="stylesheet" media="all" />
+</head>
+
+<body>
+  <main>
+
+    <div id="left"></div>
+    <div id="middle"></div>
+    <div id="right"></div>
+
+    <!-- Outline credit goes to https://codepen.io/verreauxblack/pen/qBZgVZd -->
+    <h1 class="title">Gotta Catch'em All</h1>
+    <div class="pokedex">
+
+      <!-- start of left panel -->
+      <div class="left-panel">
+        <div class="left-container">
+
+          <div class="left-top-container">
+            <div class="left-top">
+              <div class="large-blue-light"></div>
+              <div class="medium-red-light"></div>
+              <div class="medium-yellow-light"></div>
+              <div class="medium-green-light"></div>
+            </div>
+          </div>
+
+          <!-- start of left screen -->
+          <div class="left-screen">
+            <div class="screen-border">
+
+              <div class="screen-top">
+                <div class="small-red-light"></div>
+                <div class="small-red-light"></div>
+              </div>
+
+              <div class="image-screen">
+                <!-- <img src="" alt="" id="image"> -->
+              </div>
+
+              <div class="screen-bottom">
+                <div class="medium-red-button">
+                  <button class="sound-button">S</button>
+                </div>
+                <div class="speakers">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end of left screen -->
+
+          <div class="left-buttons">
+
+            <div>
+              <button class="evolve-button">E</button>
+            </div>
+
+            <div class="modes-and-display">
+              <button class="darkmode-button">DARK MODE</button>
+              <button class="lightmode-button">LIGHT MODE</button>
+              <div class="species-display"></div>
+            </div>
+
+            <div class="direction-pad">
+
+              <button class="direction-up">
+                <div class="up"></div>
+              </button>
+              
+              <div class="left-right-center">
+                
+                <button class="direction-left">
+                  <div class="left"></div>
+                </button>
+
+                <div class="center-piece">
+                  <div class="center-circle"></div>
+                </div>
+
+                <button class="direction-right">
+                  <div class="right"></div>
+                </button>
+
+              </div>
+
+              <button class="direction-down">
+                <div class="down"></div>
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- End of left panel -->
+
+      <!-- start of center -->
+      <div class="center-container">
+        <div class="center-block"></div>
+      </div>
+      <!-- end of center -->
+
+      <!-- start of right panel  -->
+      <div class="right-panel">
+        <div class="right-container">
+
+          <div class="info-screen"></div>
+
+          <div class="blue-button-container">
+            <div class="blue-button-collection">
+              <button class="blue-button">1</button>
+              <button class="blue-button">2</button>
+              <button class="blue-button">3</button>
+              <button class="blue-button">4</button>
+              <button class="blue-button">5</button>
+              <button class="blue-button">6</button>
+              <button class="blue-button">7</button>
+              <button class="blue-button">8</button>
+              <button class="blue-button">9</button>
+              <button class="blue-button">0</button>
+            </div>
+          </div>
+
+
+          <div class="lights-and-modes">
+
+            <div class="lights">
+              <div class="small-red-light"></div>
+              <div class="small-green-light"></div>
+            </div>
+
+            <div class="modes">
+              <button class="darkmode-button">DARK MODE</button>
+              <button class="lightmode-button">LIGHT LIGHT</button>
+            </div>
+
+          </div>
+
+          <div class="nav-and-search">
+
+            <div class="two-way-direction">
+              <button class="left-button">
+                <div class="left"></div>
+              </button>
+              <button class="right-button">
+                <div class="right"></div>
+              </button>
+            </div>
+
+            <div class="search">
+
+              <div>
+                <label for="search-box">Enter the Pokemon name or number</label>
+                <input type="text" id="search-box" name="search-box" autofocus="true" autocomplete="off">
+              </div>
+
+              <button class="search-button">Search</button>
+            </div>
+
+          </div>
+
+
+          <div class="type-display">
+            <div class="type1"></div>
+            <div class="type2"></div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end of right panel -->
+
+    </div>
+
+  </main>
+  <script src="./class.js"></script>
+  <script src="code.js"></script>
+</body>
+
 </html>

@@ -36,4 +36,126 @@ optional practice
 2. layout
     a. add a background image or make things more interesting
 
-    
+
+
+Pokedex functionality
+
+1. Create a class for all the base pokemon
+    a. each pokemon will have an array with their evolved forms including mega forms if there is any
+        - in the form of an image
+    b. each pokemon and their evolved forms will also have an array with their description (taken from pokemondb.net)
+    c. each pokemon will have a type
+    d. each pokemon will have a national number
+    e. each pokemon will have a species 
+    f. each pokemon will have an array with the names of the pokemon and its evolved forms
+    g.
+
+
+Pokedex layout
+
+Left panel
+
+1. Big blue light  
+    a. lights up (flashes) randomly from 1-3 times when pokemon evolves using the evolve button along with the red, yellow, and green light next to it
+    b. flashes once when pokemon is scrolled through
+
+2. red, yellow, green light
+    a. lights up (flashes) randomly from 1-3 times when pokemon evolves using the evolve button along with the big blue light
+
+3. two red lights
+    - flashes (blinks 2 times) red when the user tries to scroll up, down, left, or right when there isn't an arrow indicating they can go in that direction
+
+4. screen
+    a. shows the image of the pokemon
+    b. starts off with just a pokeball image
+        - if they click evolve, randomly select a pokemon to 'evolve' to    
+            I. if they continue to click evolve, show the evolution stages if there are any
+                i. if there isn't any, flash a message on the screen saying 'No further evolution'
+            II. if they click the arrow button, show them the next/previous pokemon based off of the pokemon national number
+
+5. red button
+    a. click to hear the sound of the pokemon
+
+6. grid lines (represents speakers)
+    - make an animation when button 5 is pressed and the pokemon noise is played
+
+7. blue button
+    a. 'evolve' button
+    b. if clicked and there are no evolutions, flash the message 'No further evolution' on the image screen
+
+8. rectangular buttons
+    - light and dark mode
+
+9. arrow buttons
+    a. images will have a scroll down arrow and scroll up arrow (except the first and last pokemon)
+        - if there is a mega  form or other pictures they also get a left and right scroll arrow
+
+10. screen at the botton of the left panel
+    - shows the species of the pokemon
+
+
+Right panel
+
+1. screen
+    a. shows the pokemons national number followed by it's name
+    b. shows all of the pokedex entries for that pokemon
+        - users can scroll through each of them using the up/right left/down buttons on the right panel
+
+2. blue grid buttons
+    - make them numbers from 0-9
+
+3. two small lights
+    - will flash if user tries scroll in a direction they aren't allowed
+
+4. rectangular buttons
+    - light and dark mode
+
+5. scroll buttons
+    a. one for scrolling left/up
+    b. one for scrolling right/down
+
+6. button and space next to scroll buttons
+    a. user can enter in the name of the pokemon    
+        - have an auto complete ability
+    b. user can enter in the pokemon number 
+
+7. two screens at the bottom of the right panel
+    a. shows the pokemon's type
+    b. will change color based off of it's type
+        - normal
+            I. #aa9
+        - fire
+            I. #f42
+        - water
+            I. #39f
+        - electric
+            I. #fc3
+        - grass
+            I. #7c5
+        - ice
+            I. #6cf
+        - fighting
+            I. #b54
+        - poison
+            I. #a59
+        - ground
+            I. #db5
+        - flying
+            I. #89f
+        - psychic 
+            I. #f59
+        - bug
+            I. #ab2
+        - rock
+            I. #ba6
+        - ghost
+            I. #66b
+        - dragon
+            I. #76e
+        - dark
+            I. #754
+        - steel
+            I. #aab
+        - fairy 
+            I. #e9e
+
