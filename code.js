@@ -17,7 +17,7 @@ const main = document.querySelector("main");
 // Your Code Here
 
 let leftDiv = document.getElementById("left");
-let middleDiv = document.getElementById("middle");
+let content = document.getElementById("content");
 let rightDiv = document.getElementById("right");
 
 let flower1 = new Flower;
@@ -25,29 +25,35 @@ let flower2 = new Flower;
 leftDiv.append(flower1.imageElement);
 rightDiv.append(flower2.imageElement);
 
-let charmander = new Charmander;
-middleDiv.append(charmander.imageElement);
 
-let eevee = new Eevee;
-middleDiv.append(eevee.imageElement);
+let pokedex = new Pokedex;
+content.append(pokedex.renderToHTML());
 
-let abra = new Abra;
-middleDiv.append(abra.imageElement);
 
-let seviper = new Seviper;
-middleDiv.append(seviper.imageElement);
+// let charmander = new Charmander;
+// middleDiv.append(charmander.imageElement);
 
-let munchlax = new Munchlax;
-middleDiv.append(munchlax.imageElement)
+// let eevee = new Eevee;
+// middleDiv.append(eevee.imageElement);
 
-let blacephalon = new Blacephalon;
-middleDiv.append(blacephalon.imageElement);
+// let abra = new Abra;
+// middleDiv.append(abra.imageElement);
 
-let blipbug = new Blipbug;
-middleDiv.append(blipbug.imageElement);
+// let seviper = new Seviper;
+// middleDiv.append(seviper.imageElement);
 
-let audino = new Audino;
-middleDiv.append(audino.imageElement);
+// let munchlax = new Munchlax;
+// middleDiv.append(munchlax.imageElement)
 
-let blitzle = new Blitzle
-middleDiv.append(blitzle.imageElement);
+// let blacephalon = new Blacephalon;
+// middleDiv.append(blacephalon.imageElement);
+
+// let blipbug = new Blipbug;
+// middleDiv.append(blipbug.imageElement);
+
+// let audino = new Audino;
+// middleDiv.append(audino.imageElement);
+
+// let blitzle = new Blitzle
+// middleDiv.append(blitzle.imageElement);
+

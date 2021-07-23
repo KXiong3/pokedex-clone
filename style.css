@@ -4,33 +4,61 @@
 }
 
 body {
-  /* background-color: black; */
+
+}
+
+#main-container {
+  display: flex;
+  justify-content: center;
 }
 
 img {
   width: 200px;
-  height: 200px;
-  background-size: contain;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #left {
-
+  align-self: flex-end;
+  margin-right: 50px;
 }
 
 #middle {
 
 }
 
-#right {
+#middle header {
+  margin-bottom: 50px;
+}
+
+#content {
 
 }
 
-/*-----------------------------Pokedex CSS-------------------------------------- */
+#middle footer {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#middle footer p {
+  font-size: x-small;
+}
+
+#right {
+  align-self: flex-end;
+}
 
 h1 {
   color: green;
   text-align: center;
 }
+
+
+/*-----------------------------Pokedex CSS-------------------------------------- */
+
+
 
 .pokedex {
   display: flex;
@@ -53,8 +81,6 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* box-shadow: 1px 1px black; */
-  /* padding-left: 8px; */
   padding-bottom: 8px;
   padding-right: 8px;
   border-radius: 6px;
@@ -172,16 +198,13 @@ h1 {
   justify-content: center;
   flex-direction: column;
   padding: 0 8px;
-  /* border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black; */
+
 }
 
 .screen-border {
   border-top: 28px solid grey;
   border-left: 15px solid grey;
   border-right: 15px solid grey;
-  /* border-bottom: 50px solid grey; */
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
   border-end-start-radius: 65px;
@@ -210,7 +233,48 @@ h1 {
 .image-screen {
   width: inherit;
   height: 200px;
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-arrow {
+  border-left: 10px solid  transparent;
+  border-right: 10px solid  transparent;
+  border-bottom: 15px solid black;
+}
+
+.arrow-image-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.left-arrow {
+  border-top: 10px solid  transparent;
+  border-bottom: 10px solid  transparent;
+  border-right: 15px solid black;
+}
+
+.right-arrow {
+  border-top: 10px solid  transparent;
+  border-bottom: 10px solid  transparent;
+  border-left: 15px solid black;
+}
+
+.bottom-arrow {
+  border-left: 10px solid  transparent;
+  border-right: 10px solid  transparent;
+  border-top: 15px solid black;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .image {
@@ -226,11 +290,7 @@ h1 {
 }
 
 .medium-red-button {
-  /* border-radius: 50%;
-  background-color: red;
-  font-size: 16.5px;
-  margin-top: 8px;
-  margin-left: 25px; */
+  
 }
 
 .sound-button {
@@ -264,11 +324,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   max-height: 400px;
-  /* margin-bottom: 12px; */
-  /* margin-top: -14px; */
-  /* border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black; */
+
 }
 
 .evolve-button {
@@ -278,11 +334,11 @@ h1 {
   color: white;
   box-shadow: 1px 1px 1px 1px black;
   margin-left: 38px;
-  /* margin-top: 16px; */
+
 }
 
 .modes-and-display {
-  /* margin-top: 16px; */
+
 }
 
 .modes-and-dislpay .darkmode-button {
@@ -294,19 +350,17 @@ h1 {
 }
 
 .darkmode-button {
-  background-color: #1a3365;
-  color: white;
+  background-color: #0d1931;
+  color: lightgrey;
   border-radius: 10px;
   font-size: x-small;
-  /* border: 1px black solid; */
   box-shadow: 1px 1px 1px 1px black;
 }
 
 .lightmode-button {
-  background-color: #F0EEEE;
+  background-color: #EAEAE5;
   border-radius: 10px;
   font-size: x-small;
-  /* border: 1px black solid; */
   box-shadow: 1px 1px 1px 1px black;
   
 }
@@ -316,9 +370,11 @@ h1 {
   margin-top: 28px;
   width: 145px;
   height: 65px;
-  /* box-shadow: 1px 1px 1px 1px black; */
   border: 2.6px outset black;
-  border-radius: 4px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -396,10 +452,6 @@ h1 {
 
 /* start of center */
 .center-container {
-  /* display: flex; */
-  /* align-items: center; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
   width: 42px;
   height: 500px;
   background-color: #b30000;
@@ -435,8 +487,6 @@ h1 {
 /* end of center */
 
 .right-side {
-  /* height: 125px; */
-  /* background-color: yellow; */
 
 }
 
@@ -458,6 +508,7 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   height: inherit;
+  /* align-items: center; */
 }
 
 .top-right-container {
@@ -470,7 +521,6 @@ h1 {
 
 .right-top {
  display: flex;
- /* align-items: flex-end; */
 }
 
 .top-container1 {
@@ -509,17 +559,19 @@ h1 {
   height: 125px;
   background-color: white;
   margin-top: 175px;
-  margin-left: auto;
-  margin-right: auto;
   border-radius: 8px;
+  margin-right: auto;
+  margin-left: auto;
   box-shadow: 1px 1px 1px 1px black;
+  display: flex;
+  align-items: center;
+  text-align: center;
   
 }
 
 .blue-button-container {
   display: inline;
   width: 250px;
-  /* margin-top: -25px; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -534,6 +586,7 @@ h1 {
   color: white;
   width: 50px;
   box-shadow: 1px 1px 1px 1px black;
+  border-radius: 4px;
 }
 
 .lights-and-modes {
@@ -563,7 +616,7 @@ h1 {
 }
 
 .modes {
-
+  /* margin-left: 150px; */
 }
 
 .modes .darkmode-button {
@@ -606,6 +659,11 @@ label, input {
 #search-box {
   margin-left: 100px;
   margin-top: 8px;
+  border-radius: 12px;
+}
+
+#search-box:placeholder-shown {
+  
 }
 
 label {
@@ -621,7 +679,7 @@ label {
 
 .type-display {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .type1 {
@@ -629,6 +687,11 @@ label {
   height: 45px;
   background-color: white;
   border: 2.6px outset black;
+  border-radius: 6px;
+  /* margin-right: 80px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .type2 {
@@ -637,10 +700,114 @@ label {
   background-color: white;
   margin-bottom: 20px;
   border: 2.6px outset black;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 /* end of right panel */
 
 /* ----------------------------End of Pokedex-------------------------------- */
+
+/* event listener CSS */
+
+.light {
+  background-color:  #EAEAE5;
+}
+
+.dark {
+  /* #1a3365 #1F1B24*/
+  background-color: #0d1931; 
+  color: whitesmoke;
+}
+
+.normal {
+  background-color: #AA9;
+}
+
+.fire {
+  background-color: #F42;
+}
+
+.water {
+  background-color: #39F;
+
+}
+
+.electric {
+  background-color: #FC3;
+
+}
+
+.grass {
+  background-color: #7C5;
+
+}
+
+.ice {
+  background-color: #6CF;
+
+}
+
+.fighting {
+  background-color: #B54;
+
+}
+
+.poison {
+  background-color: #A59;
+
+}
+
+.ground{
+  background-color: #DB5;
+
+}
+.flying {
+  background-color: #89F;
+
+}
+
+.psychic {
+  background-color: #F59;
+
+}
+
+.bug {
+  background-color: #AB2;
+
+}
+
+.rock{
+  background-color: #BA6;
+
+}
+
+.ghost{
+  background-color: #66B;
+
+}
+
+.dragon {
+  background-color: #76E;
+
+}
+
+.ndark {
+  background-color: #754;
+
+}
+
+.steel {
+  background-color: #AAB;
+
+}
+
+.fairy {
+  background-color: #E9E;
+
+}
 
 /* ----- Shake Animation --------------------------------- */
 .shake2 {

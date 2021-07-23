@@ -159,3 +159,14 @@ Right panel
         - fairy 
             I. #e9e
 
+
+
+create only three classes, pokemon class, linear evolution and non linear
+    a. pass in the names of the pokemon as an array
+    b. pass in the image url as an array
+    c. pass in the type as an array
+    d. pass in the species as a string
+    e. pass in the info as an array 
+    f. pass in the nation numbers as an array
+    g. pass in if they have a mega form or not
+    
