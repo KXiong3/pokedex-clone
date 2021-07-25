@@ -3,13 +3,15 @@
 function toggleShake(element) {
   // Animations only occur when a new class is added to the element.
   // Since we want this to happen every time, we can switch between two different animations
+  // console.log(element);
   if (element.classList.contains("shake1")) {
     element.classList.remove("shake1");
     element.classList.add("shake2")
-  } else {
+  } else  {
     element.classList.remove("shake2");
     element.classList.add("shake1")
   }
+
 }
 
 const main = document.querySelector("main");

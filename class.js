@@ -35,57 +35,210 @@ class Pokemon extends ClickableImage {
         this.species = [...pokemonObject.typeOfSpecies];
         this.info = [...pokemonObject.pokedexEntries];
         this.imageElement.src = this.imageArray[this.index];
-        this.isFinalEvolution = false;
     }
 
 }
 
 class LinearEvolutionPokemon extends Pokemon {
-    constructor(imagesOfPokemons, nameOfPokemonAndItsEvolvedForms, nationalNumber, pokemonTypes, typeOfSpecies, pokedexEntries) {
-        super(imagesOfPokemons, nameOfPokemonAndItsEvolvedForms, nationalNumber, pokemonTypes, typeOfSpecies, pokedexEntries);
-        this.imageElement.addEventListener("click", this.clickOnImage);
-    }
 
-    clickOnImage = () => {
+    makeEvolve = () => {
+        let currentPokemonName = this.imageElement.dataset.name;
+        let currenPokemonIndex = this.names.indexOf(currentPokemonName);
+        let isFinalForm = currenPokemonIndex === this.imageArray.length - 1;
         let chanceToEvolve = Math.random();
-        if (chanceToEvolve < .25) {
-            if (this.index < this.imageArray.length - 1) {
-                this.index++;
-                this.imageElement.src = this.imageArray[this.index];
-            }
-        } else {
-            toggleShake(this.imageElement);
-        }
-    }
-}
 
-class NonLinearEvolutionPokemon extends Pokemon {
-    constructor(imagesOfPokemons, nameOfPokemonAndItsEvolvedForms, nationalNumber, pokemonTypes, typeOfSpecies, pokedexEntries) {
-        super(imagesOfPokemons, nameOfPokemonAndItsEvolvedForms, nationalNumber, pokemonTypes, typeOfSpecies, pokedexEntries);
-        this.isFullyEvolved = false;
-        this.imageElement.addEventListener("click", this.clickOnImage);
-    }
-
-    clickOnImage = () => {
-        let chanceToEvolve = Math.random();
-        if (this.isFullyEvolved) {
+        if (isFinalForm) {
             toggleShake(this.imageElement);
         } else {
             if (chanceToEvolve < .25) {
-                if (this.index < this.imageArray.length - 1) {
-                    this.index++;
-                    this.imageElement.src = this.imageArray[this.index];
+                currenPokemonIndex += 1;
+
+                // image
+                this.imageElement.src = this.imageArray[currenPokemonIndex];
+                this.imageElement.alt = `image of ${this.names[currenPokemonIndex]}`;
+                this.imageElement.dataset.name = `${this.names[currenPokemonIndex]}`;
+                this.imageElement.classList.add("image");
+
+                let imageContainer = document.querySelector(".image-container");
+                imageContainer.innerHTML = "";
+                imageContainer.append(this.imageElement);
+
+                // species
+                let speciesContainer = document.querySelector(".species-display");
+                speciesContainer.innerText = this.species[currenPokemonIndex].toUpperCase();
+
+                // info
+                let infoContainer = document.querySelector(".info-text-area");
+                infoContainer.innerText = this.info[currenPokemonIndex][0]
+
+                // types
+                let type1 = null;
+                let type2 = null;
+                let display1 = document.querySelector(".type1");
+                let display2 = document.querySelector(".type2");
+                if (this.types[currenPokemonIndex].length > 1) {
+                    type1 = this.types[currenPokemonIndex][0];
+                    display1.innerText = type1.toUpperCase();
+
+                    if (display1.classList.contains("dark")) {
+                        display1.className = "dark";
+                    } else if (display1.classList.contains("light")) {
+                        display1.className = "light";
+                    }
+                    display1.classList.add("type1");
+                    display1.classList.add(type1);
+
+                    type2 = this.types[currenPokemonIndex][1];
+                    display2.innerText = type2.toUpperCase();
+
+                    if (display2.classList.contains("dark")) {
+                        display2.className = "dark";
+                    } else if (display2.classList.contains("light")) {
+                        display2.className = "light";
+                    }
+                    display2.classList.add("type2");
+                    display2.classList.add(type2);
+
+
                 } else {
-                    let randomFinalForm = Math.floor(Math.random() * this.finalForm.length);
-                    this.imageElement.src = this.finalForm[randomFinalForm];
-                    this.isFullyEvolved = true;
-                    console.log(randomFinalForm);
+                    type1 = this.types[currenPokemonIndex][0];
+                    display1.innerText = type1.toUpperCase();
+
+                    if (display1.classList.contains("dark")) {
+                        display1.className = "dark";
+                    } else if (display1.classList.contains("light")) {
+                        display1.className = "light";
+                    }
+                    display1.classList.add("type1");
+                    display1.classList.add(type1);
+
+                    display2.innerText = "";
+                    if (display2.classList.contains("dark")) {
+                        display2.className = "dark";
+                    } else if (display2.classList.contains("light")) {
+                        display2.className = "light";
+                    }
+                    display2.classList.add("type2");
                 }
+
             } else {
                 toggleShake(this.imageElement);
             }
         }
     }
+
+}
+
+class NonLinearEvolutionPokemon extends Pokemon {
+    constructor(pokemonObject) {
+        super(pokemonObject);
+        this.indexOfBranchingEvolution = pokemonObject.indexOfBranchingEvolution;
+    }
+    makeEvolve = () => {
+        let currentPokemonName = this.imageElement.dataset.name;
+        let currenPokemonIndex = this.names.indexOf(currentPokemonName);
+        let isFinalForm = currenPokemonIndex > this.indexOfBranchingEvolution;
+        let chanceToEvolve = Math.random();
+
+        if (isFinalForm) {
+            toggleShake(this.imageElement);
+        } else {
+            let randomFinalForm = Math.floor(Math.random() * (this.imageArray.length - Math.abs(currenPokemonIndex - 1)) + Math.abs(currenPokemonIndex - 1))
+            if (chanceToEvolve < .25) {
+                this.imageElement.src = this.imageArray[randomFinalForm];
+                this.imageElement.alt = `image of ${this.names[randomFinalForm]}`;
+                this.imageElement.dataset.name = `${this.names[randomFinalForm]}`;
+                this.imageElement.classList.add("image")
+
+                let imageContainer = document.querySelector(".image-container");
+                imageContainer.innerHTML = "";
+                imageContainer.append(this.imageElement);
+
+                // species
+                let speciesContainer = document.querySelector(".species-display");
+                speciesContainer.innerText = this.species[randomFinalForm].toUpperCase();
+
+                // info
+                let infoContainer = document.querySelector(".info-text-area");
+                infoContainer.innerText = this.info[randomFinalForm][0]
+
+                // types
+                let type1 = null;
+                let type2 = null;
+                let display1 = document.querySelector(".type1");
+                let display2 = document.querySelector(".type2");
+                if (this.types[randomFinalForm].length > 1) {
+                    type1 = this.types[randomFinalForm][0];
+                    display1.innerText = type1.toUpperCase();
+
+                    if (display1.classList.contains("dark")) {
+                        display1.className = "dark";
+                    } else if (display1.classList.contains("light")) {
+                        display1.className = "light";
+                    }
+                    display1.classList.add("type1");
+                    display1.classList.add(type1);
+
+                    type2 = this.types[randomFinalForm][1];
+                    display2.innerText = type2.toUpperCase();
+
+                    if (display2.classList.contains("dark")) {
+                        display2.className = "dark";
+                    } else if (display2.classList.contains("light")) {
+                        display2.className = "light";
+                    }
+                    display2.classList.add("type2");
+                    display2.classList.add(type2);
+
+
+                } else {
+                    type1 = this.types[randomFinalForm][0];
+                    display1.innerText = type1.toUpperCase();
+
+                    if (display1.classList.contains("dark")) {
+                        display1.className = "dark";
+                    } else if (display1.classList.contains("light")) {
+                        display1.className = "light";
+                    }
+                    display1.classList.add("type1");
+                    display1.classList.add(type1);
+
+                    display2.innerText = "";
+                    if (display2.classList.contains("dark")) {
+                        display2.className = "dark";
+                    } else if (display2.classList.contains("light")) {
+                        display2.className = "light";
+                    }
+                    display2.classList.add("type2");
+                }
+
+
+            } else {
+                toggleShake(this.imageElement);
+            }
+        }
+    }
+
+    // clickOnImage = () => {
+    //     let chanceToEvolve = Math.random();
+    //     if (this.isFullyEvolved) {
+    //         toggleShake(this.imageElement);
+    //     } else {
+    //         if (chanceToEvolve < .25) {
+    //             if (this.index < this.imageArray.length - 1) {
+    //                 this.index++;
+    //                 this.imageElement.src = this.imageArray[this.index];
+    //             } else {
+    //                 let randomFinalForm = Math.floor(Math.random() * this.finalForm.length);
+    //                 this.imageElement.src = this.finalForm[randomFinalForm];
+    //                 this.isFullyEvolved = true;
+    //                 console.log(randomFinalForm);
+    //             }
+    //         } else {
+    //             toggleShake(this.imageElement);
+    //         }
+    //     }
+    // }
 }
 
 // // need to work on this
@@ -921,7 +1074,7 @@ class NonLinearEvolutionPokemon extends Pokemon {
 // }
 
 // class Corsola extends NoEvolution {
-    
+
 // }
 
 // class Remoraid extends LinearEvolution {
@@ -1256,7 +1409,7 @@ class NonLinearEvolutionPokemon extends Pokemon {
 //         this.imageArray = ["./images/pokeball.png", "./images/seviper.png"];
 //         this.imageElement.src = this.imageArray[this.index];
 //     }
-    
+
 // }
 
 // class Lunatone extends NoEvolution {}
@@ -1850,7 +2003,7 @@ class NonLinearEvolutionPokemon extends Pokemon {
 // }
 
 // class Basculin extends NoEvolution {
-    
+
 // }
 
 // class Sandile extends LinearEvolution {

@@ -1,4 +1,6 @@
 /* Write your CSS Here. */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -63,6 +65,7 @@ h1 {
 .pokedex {
   display: flex;
   justify-content: center;
+  font-family: 'Comic Neue', serif;
   
 }
 
@@ -564,9 +567,32 @@ h1 {
   margin-left: auto;
   box-shadow: 1px 1px 1px 1px black;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   text-align: center;
+}
+
+.name-area {
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.scroll-arrows-and-text {
+  display: flex;
+
+}
+
+.left-scroll-arrow {
+
+}
+
+.info-text-area {
   
+}
+
+.right-scroll-arrow {
+
 }
 
 .blue-button-container {
@@ -668,6 +694,8 @@ label, input {
 
 label {
   font-weight: bolder;
+  text-shadow: .4px .4px .4px rgb(29, 29, 29);
+  /* font-size: 16px; */
 }
 
 .search-button {
@@ -707,6 +735,11 @@ label {
   
 }
 /* end of right panel */
+
+.species-display, .type-display {
+  font-weight: bolder;
+  font-size: larger;
+}
 
 /* ----------------------------End of Pokedex-------------------------------- */
 

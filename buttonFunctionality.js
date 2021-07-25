@@ -13,6 +13,10 @@ class Pokedex {
         this.smallRedLt3 = null;
         this.imageDisplay = null;
         this.imageContainer = null;
+        this.upDirectionArrow = null;
+        this.rightDirectionArrow = null;
+        this.downDirectionArrow = null;
+        this.leftDirectionArrow = null;
         this.soundBtn = null;
         this.evolveBtn = null;
         this.darkModeBtn1 = null;
@@ -25,6 +29,10 @@ class Pokedex {
         this.dpadLeft = null;
         this.speciesScreen = null;
         this.infoDisplay = null;
+        this.infoTextArea = null;
+        this.pokemonNameArea = null;
+        this.leftScrollArrow = null;
+        this.rightScrollArrow = null;
         this.blueBtn0 = null;
         this.blueBtn1 = null;
         this.blueBtn2 = null;
@@ -136,6 +144,7 @@ class Pokedex {
 
         let topArrow = document.createElement("div")
         topArrow.classList.add("top-container")
+        this.upDirectionArrow = topArrow;
         imageScreen.append(topArrow);
 
         let arrowImageContainer = document.createElement("div");
@@ -144,6 +153,7 @@ class Pokedex {
 
         let leftArrow = document.createElement("div");
         leftArrow.classList.add("left-container");
+        this.leftDirectionArrow = leftArrow;
         arrowImageContainer.append(leftArrow);
 
         let imageContainer = document.createElement("div")
@@ -168,11 +178,13 @@ class Pokedex {
 
         let rightArrow = document.createElement("div");
         rightArrow.classList.add("right-container");
+        this.rightDirectionArrow = rightArrow;
         arrowImageContainer.append(rightArrow);
 
 
         let bottomArrow = document.createElement("div");
-        bottomArrow.classList.add("bottom-container")
+        bottomArrow.classList.add("bottom-container");
+        this.downDirectionArrow = bottomArrow;
         imageScreen.append(bottomArrow);
 
 
@@ -367,6 +379,32 @@ class Pokedex {
         infoScreen.classList.add("light");
         rightContainer.append(infoScreen);
         this.infoDisplay = infoScreen;
+
+        let nameArea = document.createElement("div");
+        nameArea.classList.add("name-area");
+        this.pokemonNameArea = nameArea;
+        infoScreen.append(nameArea);
+
+        let scrollArrowsAndText = document.createElement("div")
+        scrollArrowsAndText.classList.add("scroll-arrows-and-text");
+        infoScreen.append(scrollArrowsAndText);
+
+
+        let leftScrollArrow = document.createElement("div");
+        leftScrollArrow.classList.add("left-scroll-arrow");
+        this.leftScrollArrow = leftScrollArrow;
+        scrollArrowsAndText.append(leftScrollArrow);
+
+        let textArea = document.createElement("div");
+        textArea.classList.add("info-text-area");
+        this.infoTextArea = textArea;
+        scrollArrowsAndText.append(textArea);
+
+
+        let rightScrollArrow = document.createElement("div");
+        rightScrollArrow.classList.add("right-scroll-arrow");
+        this.rightScrollArrow = rightScrollArrow;
+        scrollArrowsAndText.append(rightScrollArrow);
 
         let blueButtonContainer = document.createElement("div");
         blueButtonContainer.classList.add("blue-button-container");
@@ -563,6 +601,114 @@ class Pokedex {
 
     evolvePokemon = () => {
         console.log("do something");
+        let chanceToEvolve = Math.random();
+        let maxIndex = this.pokemonArray.reduce((highestNum, currentPokemonObj) => {
+            for (let index = 0; index < currentPokemonObj.nationalNumbers.length; index++) {
+                let number = currentPokemonObj.nationalNumbers[index];
+                if (number > highestNum) {
+                    highestNum = number;
+                }
+            }
+            return highestNum;
+        }, 0)
+        // if there is already a pokemon there don't choose a random pokemon, just make it evolve if it can
+
+        let currentImage = this.imageContainer.firstChild;
+
+        if (currentImage.dataset.name === "pokeball") {
+            let randomPokemonIndex = Math.floor(Math.random() * (maxIndex + 1));
+            let randomPokemon = this.pokemonArray.find(pokemon => {
+                if (pokemon.nationalNumbers.includes(randomPokemonIndex)) {
+                    return pokemon;
+                }
+            });
+
+            while (randomPokemon === undefined) {
+                randomPokemonIndex = Math.floor(Math.random() * (maxIndex + 1));
+                randomPokemon = this.pokemonArray.find(pokemon => {
+                    if (pokemon.nationalNumbers.includes(randomPokemonIndex)) {
+                        return pokemon;
+                    }
+                });
+            }
+            if (chanceToEvolve < .25) {
+
+                // image
+                let image = randomPokemon.imageElement;
+                let nationalNumberIndex = randomPokemon.nationalNumbers.indexOf(randomPokemonIndex);
+                image.src = randomPokemon.imageArray[nationalNumberIndex];
+                image.alt = `image of ${randomPokemon.names[nationalNumberIndex]}`;
+                image.dataset.name = `${randomPokemon.names[nationalNumberIndex]}`;
+                image.classList.add("image");
+                this.imageContainer.innerHTML = "";
+                this.imageContainer.append(image);
+
+                // species 
+                this.speciesScreen.innerText = randomPokemon.species[nationalNumberIndex].toUpperCase();
+
+                // info
+                this.pokemonNameArea.innerText = image.dataset.name.toUpperCase();
+                this.infoTextArea.innerText = randomPokemon.info[nationalNumberIndex][0];
+
+                // type
+
+                let type1 = null;
+                let type2 = null;
+
+                if (randomPokemon.types[nationalNumberIndex].length > 1) {
+                    if (this.type1Display.classList.contains("dark")) {
+                        this.type1Display.className = "dark";
+                    } else if (this.type1Display.classList.contains("light")) {
+                        this.type1Display.className = "light"
+                    }
+                    type1 = randomPokemon.types[nationalNumberIndex][0];
+                    this.type1Display.classList.add("type1");
+                    this.type1Display.classList.add(type1);
+                    this.type1Display.innerText = type1.toUpperCase();
+
+                    if (this.type2Display.classList.contains("dark")) {
+                        this.type2Display.className = "dark";
+                    } else if (this.type2Display.classList.contains("light")) {
+                        this.type2Display.className = "light"
+                    }
+                    type2 = randomPokemon.types[nationalNumberIndex][1];
+                    this.type2Display.classList.add("type2");
+                    this.type2Display.classList.add(type2);
+                    this.type2Display.innerText = type2.toUpperCase();
+
+                } else {
+                    if (this.type1Display.classList.contains("dark")) {
+                        this.type1Display.className = "dark";
+                    } else if (this.type1Display.classList.contains("light")) {
+                        this.type1Display.className = "light"
+                    }
+                    type1 = randomPokemon.types[nationalNumberIndex][0];
+                    this.type1Display.classList.add("type1");
+                    this.type1Display.classList.add(type1);
+                    this.type1Display.innerText = type1.toUpperCase();
+
+                    if (this.type2Display.classList.contains("dark")) {
+                        this.type2Display.className = "dark";
+                    } else if (this.type2Display.classList.contains("light")) {
+                        this.type2Display.className = "light";
+                    }
+                    this.type2Display.classList.add("type2");
+                    this.type2Display.innerText = "";
+
+                }
+
+
+            } else {
+                toggleShake(currentImage);
+            }
+        } else {
+            let currentPokemon = this.pokemonArray.find(pokemon => {
+                if (pokemon.names.includes(currentImage.dataset.name)) {
+                    return pokemon;
+                }
+            });
+            currentPokemon.makeEvolve();
+        }
     }
     changeLeftToDarkMode = () => {
         if (this.leftMode === "dark") {
@@ -665,6 +811,11 @@ class Pokedex {
                         previousImage.alt = `image of ${previousPokemon.names[previousPokemon.names.length - 1]}`
                         previousImage.dataset.name = `${previousPokemon.names[previousPokemon.names.length - 1]}`
                         previousImage.classList.add("image");
+                        if (previousImage.classList.contains("shake1")) {
+                            previousImage.classList.remove("shake1");
+                        } else if (previousImage.classList.contains("shake2")) {
+                            previousImage.classList.remove("shake2");
+                        }
                         imageContainer.innerHTML = "";
                         imageContainer.append(previousImage);
 
@@ -673,8 +824,9 @@ class Pokedex {
                         this.speciesScreen.innerText = species.toUpperCase();
 
                         // pokemon info
+                        this.pokemonNameArea.innerText = previousImage.dataset.name.toUpperCase();
                         let pokemonInfo = previousPokemon.info[previousPokemon.species.length - 1][0];
-                        this.infoDisplay.innerText = pokemonInfo;
+                        this.infoTextArea.innerText = pokemonInfo;
 
                         // pokemon types
                         let type1 = null;
@@ -744,6 +896,11 @@ class Pokedex {
                         previousImage.alt = `image of ${previousPokemon.names[previousPokemon.names.indexOf(currentImage.dataset.name) - 1]}`
                         previousImage.dataset.name = `${previousPokemon.names[previousPokemon.names.indexOf(currentImage.dataset.name) - 1]}`
                         previousImage.classList.add("image");
+                        if (previousImage.classList.contains("shake1")) {
+                            previousImage.classList.remove("shake1");
+                        } else if (previousImage.classList.contains("shake2")) {
+                            previousImage.classList.remove("shake2");
+                        }
                         imageContainer.innerHTML = "";
                         imageContainer.append(previousImage);
 
@@ -752,8 +909,9 @@ class Pokedex {
                         this.speciesScreen.innerText = species.toUpperCase();
 
                         // pokemon info
+                        this.pokemonNameArea.innerText = previousImage.dataset.name.toUpperCase();
                         let pokemonInfo = previousPokemon.info[previousPokemon.names.indexOf(currentImage.dataset.name)][0];
-                        this.infoDisplay.innerText = pokemonInfo;
+                        this.infoTextArea.innerText = pokemonInfo;
 
                         // pokemon types
                         let type1 = null;
@@ -823,6 +981,7 @@ class Pokedex {
                         previousImage.alt = "image of a pokeball"
                         previousImage.dataset.name = "pokeball"
                         previousImage.classList.add("image");
+                        
                         imageContainer.innerHTML = "";
                         imageContainer.append(previousImage);
 
@@ -830,7 +989,8 @@ class Pokedex {
                         this.speciesScreen.innerText = "";
 
                         // pokemon info
-                        this.infoDisplay.innerText = "";
+                        this.pokemonNameArea.innerText = "";
+                        this.infoTextArea.innerText = "";
 
                         // pokemon types
                         if (this.type1Display.classList.contains("dark")) {
@@ -852,6 +1012,11 @@ class Pokedex {
                         previousImage.alt = `image of ${previousPokemon.names[previousPokemon.names.indexOf(currentImage.dataset.name) - 1]}`
                         previousImage.dataset.name = `${previousPokemon.names[previousPokemon.names.indexOf(currentImage.dataset.name) - 1]}`
                         previousImage.classList.add("image");
+                        if (previousImage.classList.contains("shake1")) {
+                            previousImage.classList.remove("shake1");
+                        } else if (previousImage.classList.contains("shake2")) {
+                            previousImage.classList.remove("shake2");
+                        }
                         imageContainer.innerHTML = "";
                         imageContainer.append(previousImage);
 
@@ -860,8 +1025,9 @@ class Pokedex {
                         this.speciesScreen.innerText = species.toUpperCase();
 
                         // pokemon info
+                        this.pokemonNameArea.innerText = previousImage.dataset.name.toUpperCase();
                         let pokemonInfo = previousPokemon.info[previousPokemon.names.indexOf(currentImage.dataset.name)][0];
-                        this.infoDisplay.innerText = pokemonInfo;
+                        this.infoTextArea.innerText = pokemonInfo;
 
                         // pokemon types
                         let type1 = null;
@@ -933,9 +1099,11 @@ class Pokedex {
         }
 
     }
+
     moveRight = () => {
         // console.log("move right");
     }
+
     moveDown = () => {
         // console.log("move down");
         if (this.pokemonArray.length > 0) {
@@ -970,6 +1138,11 @@ class Pokedex {
                     nextImage.alt = `image of ${nextPokemon.names[0]}`;
                     nextImage.dataset.name = `${nextPokemon.names[0]}`;
                     nextImage.classList.add("image");
+                    if (nextImage.classList.contains("shake1")) {
+                        nextImage.classList.remove("shake1");
+                    } else if (nextImage.classList.contains("shake2")) {
+                        nextImage.classList.remove("shake2");
+                    }
                     imageContainer.innerHTML = "";
                     imageContainer.append(nextImage);
 
@@ -980,8 +1153,9 @@ class Pokedex {
 
 
                     // pokemon info
+                    this.pokemonNameArea.innerText = nextImage.dataset.name.toUpperCase();
                     let pokemonInfo = nextPokemon.info[0][0];
-                    this.infoDisplay.innerText = pokemonInfo;
+                    this.infoTextArea.innerText = pokemonInfo;
 
 
                     // pokemon type
@@ -1052,6 +1226,11 @@ class Pokedex {
                     nextImage.alt = `image of ${nextPokemon.names[nextPokemon.names.indexOf(currentImage.dataset.name) + 1]}`;
                     nextImage.dataset.name = `${nextPokemon.names[nextPokemon.names.indexOf(currentImage.dataset.name) + 1]}`;
                     nextImage.classList.add("image");
+                    if (nextImage.classList.contains("shake1")) {
+                        nextImage.classList.remove("shake1");
+                    } else if (nextImage.classList.contains("shake2")) {
+                        nextImage.classList.remove("shake2");
+                    }
                     imageContainer.innerHTML = "";
                     imageContainer.append(nextImage);
 
@@ -1062,8 +1241,9 @@ class Pokedex {
 
 
                     // pokemon info
+                    this.pokemonNameArea.innerText = nextImage.dataset.name.toUpperCase();
                     let pokemonInfo = nextPokemon.info[nextPokemon.names.indexOf(currentImage.dataset.name)][0];
-                    this.infoDisplay.innerText = pokemonInfo;
+                    this.infoTextArea.innerText = pokemonInfo;
 
                     // pokemon type
                     let type1 = null;
@@ -1135,6 +1315,11 @@ class Pokedex {
                 nextImage.alt = `image of ${nextPokemon.names[0]}`;
                 nextImage.dataset.name = `${nextPokemon.names[0]}`;
                 nextImage.classList.add("image");
+                if (nextImage.classList.contains("shake1")) {
+                    nextImage.classList.remove("shake1");
+                } else if (nextImage.classList.contains("shake2")) {
+                    nextImage.classList.remove("shake2");
+                }
                 imageContainer.innerHTML = "";
                 imageContainer.append(nextImage);
 
@@ -1143,8 +1328,10 @@ class Pokedex {
                 this.speciesScreen.innerText = species.toUpperCase();
 
                 // pokemon info
+                this.pokemonNameArea.innerText = nextImage.dataset.name.toUpperCase();
                 let pokemonInfo = nextPokemon.info[0][0];
-                this.infoDisplay.innerText = pokemonInfo;
+                this.infoTextArea.innerText = pokemonInfo;
+                
 
                 // pokemon type
                 let type1 = null;
@@ -1206,6 +1393,7 @@ class Pokedex {
             }
         }
     }
+
     moveLeft = () => {
         // console.log("move left");
     }
@@ -1215,46 +1403,55 @@ class Pokedex {
             this.searchInput.value += "1";
         }
     }
+
     search2 = () => {
         if (this.searchInput.value.length <= 11) {
             this.searchInput.value += "2";
         }
     }
+
     search3 = () => {
         if (this.searchInput.value.length <= 11) {
             this.searchInput.value += "3";
         }
     }
+
     search4 = () => {
         if (this.searchInput.value.length <= 11) {
             this.searchInput.value += "4";
         }
     }
+
     search5 = () => {
         if (this.searchInput.value.length <= 11) {
             this.searchInput.value += "5";
         }
     }
+
     search6 = () => {
         if (this.searchInput.value.length <= 11) {
             this.searchInput.value += "6";
         }
     }
+
     search7 = () => {
         if (this.searchInput.value.length <= 11) {
             this.searchInput.value += "7";
         }
     }
+
     search8 = () => {
         if (this.searchInput.value.length <= 11) {
             this.searchInput.value += "8";
         }
     }
+
     search9 = () => {
         if (this.searchInput.value.length <= 11) {
             this.searchInput.value += "9";
         }
     }
+
     search0 = () => {
         if (this.searchInput.value.length <= 11) {
             this.searchInput.value += "0";
@@ -1272,7 +1469,7 @@ class Pokedex {
                 return pokemon;
             }
         });
-        let currentInfo = document.querySelector(".info-screen");
+        let currentInfo = document.querySelector(".info-text-area");
         let outerIndexOfCurrentInfo = currentPokemon.names.indexOf(currentImage.dataset.name);
         let innerIndexOfCurrentInfo = currentPokemon.info[outerIndexOfCurrentInfo].indexOf(currentInfo.innerHTML);
         if (innerIndexOfCurrentInfo !== 0) {
@@ -1283,6 +1480,7 @@ class Pokedex {
 
     scrollRight = () => {
         // increase index in the info array
+        // use this instead of document.querySelector
         let currentImage = document.querySelector(".image");
         if (currentImage.dataset.name === "pokeball") {
             return;
@@ -1292,7 +1490,8 @@ class Pokedex {
                 return pokemon;
             }
         });
-        let currentInfo = document.querySelector(".info-screen");
+        // change the document.querySelector to this.infoTextArea
+        let currentInfo = document.querySelector(".info-text-area");
         let outerIndexOfCurrentInfo = currentPokemon.names.indexOf(currentImage.dataset.name);
         let innerIndexOfCurrentInfo = currentPokemon.info[outerIndexOfCurrentInfo].indexOf(currentInfo.innerHTML);
         let sizeOfInnerInfoArray = currentPokemon.info[outerIndexOfCurrentInfo].length - 1
@@ -1339,6 +1538,11 @@ class Pokedex {
                 image.alt = `image of ${pokemon.names[indexOfPokemon]}`;
                 image.dataset.name = `${pokemon.names[indexOfPokemon]}`;
                 image.classList.add("image");
+                if (image.classList.contains("shake1")) {
+                    image.classList.remove("shake1")
+                } else if (image.classList.contains("shake2")) {
+                    image.classList.remove("shake2");
+                }
 
                 this.imageContainer.innerHTML = ""
                 this.imageContainer.append(image);
@@ -1347,8 +1551,9 @@ class Pokedex {
                 this.speciesScreen.innerText = pokemon.species[indexOfPokemon].toUpperCase();
 
                 // info
-                this.infoDisplay.innerText = pokemon.info[indexOfPokemon][0];
-
+                this.pokemonNameArea.innerText = image.dataset.name.toUpperCase();
+                this.infoTextArea.innerText = pokemon.info[indexOfPokemon][0];
+                
                 // type
                 let type1 = null;
                 let type2 = null;
@@ -1402,14 +1607,13 @@ class Pokedex {
                     }
 
                     this.type2Display.classList.add("type2");
-                   
+
                 }
             }
 
 
         }
     }
-
 
     populatePokedexData = () => {
         let listOfPokemons = [];
@@ -1443,7 +1647,8 @@ class Pokedex {
 
         pokemonObj = {
             imagesOfPokemons: ["./images/pokemon-2/eevee/eevee0.png", "./images/pokemon-2/eevee/eevee1.png", "./images/pokemon-2/eevee/eevee2.png", "./images/pokemon-2/eevee/eevee3.png"],
-            nameOfPokemonAndItsEvolvedForms: ["eevee", "vaporeon", "volteon", "flareon"],
+            nameOfPokemonAndItsEvolvedForms: ["eevee", "vaporeon", "jolteon", "flareon"],
+            indexOfBranchingEvolution: 0,
             nationalNumbers: [133, 134, 135, 136],
             pokemonTypes: [
                 ["normal"],
@@ -1472,7 +1677,7 @@ class Pokedex {
             ]
         }
 
-        let eevee = new LinearEvolutionPokemon(pokemonObj);
+        let eevee = new NonLinearEvolutionPokemon(pokemonObj);
         listOfPokemons.push(eevee);
 
         return listOfPokemons;
