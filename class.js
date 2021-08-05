@@ -70,6 +70,8 @@ class LinearEvolutionPokemon extends Pokemon {
                 // info
                 let infoContainer = document.querySelector(".info-text-area");
                 infoContainer.innerText = this.info[currenPokemonIndex][0]
+                let nameContainer = document.querySelector(".name-area");
+                nameContainer.innerText = this.names[currenPokemonIndex].toUpperCase();
 
                 // types
                 let type1 = null;
@@ -161,6 +163,9 @@ class NonLinearEvolutionPokemon extends Pokemon {
                 // info
                 let infoContainer = document.querySelector(".info-text-area");
                 infoContainer.innerText = this.info[randomFinalForm][0]
+                let nameContainer = document.querySelector(".name-area");
+                nameContainer.innerText = this.names[randomFinalForm].toUpperCase();
+
 
                 // types
                 let type1 = null;
